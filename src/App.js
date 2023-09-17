@@ -3,6 +3,8 @@ import { useState } from 'react';
 import './styles.css'
 import NewTodo  from './NewTodo';
 import TodoList from './TodoList';
+// import {v4 as uuidv4} from 'uuid';
+
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -12,7 +14,7 @@ function App() {
       return [
         ...currTodos,
         // ... this will alow you to keep the old values
-        {id: crypto.randomUUID, title, completed: false},
+        {id: Math.random(), title, completed: false},
       ]
     })
   }
@@ -22,6 +24,8 @@ function App() {
     setTodos(currentTodos => {
       return currentTodos.map(todo => {
         if (todo.id === id) {
+          console.log("todo id: " + todo.id)
+          console.log("id: " + id)
           return { ...todo, completed }
         }
         // while updating we only want to change the checkbox,
